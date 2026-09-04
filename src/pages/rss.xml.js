@@ -15,7 +15,9 @@ export async function GET(context) {
     site: context.site,
     items: echoes.map((echo) => ({
       ...echo.data,
-      link: `/echoes/${echo.id}/`,
+      // Use an absolute URL so the RSS helper does not apply its own
+      // slash-suffixed route normalization.
+      link: new URL(`/echoes/${echo.id}`, context.site).href,
     })),
   });
 }

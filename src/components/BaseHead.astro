@@ -10,7 +10,11 @@ interface Props {
   image?: ImageMetadata | undefined;
 }
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+// `trailingSlash: "never"` keeps article links and their fragments in the
+// canonical `/echoes/article#section` form. Normalize here as a safeguard for
+// direct requests to a legacy slash-suffixed URL.
+const canonicalPathname = Astro.url.pathname.replace(/\/$/, "") || "/";
+const canonicalURL = new URL(canonicalPathname, Astro.site);
 
 const { title, description, image } = Astro.props;
 
@@ -64,7 +68,7 @@ const ogImageHeight = image?.height ?? 600;
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content={SITE_TITLE} />
-<meta property="og:url" content={Astro.url} />
+<meta property="og:url" content={canonicalURL} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
 <meta property="og:image" content={ogImageURL} />
@@ -75,7 +79,7 @@ const ogImageHeight = image?.height ?? 600;
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:site" content="@KGDrayken" />
 <meta name="twitter:creator" content="@KGDrayken" />
-<meta name="twitter:url" content={Astro.url} />
+<meta name="twitter:url" content={canonicalURL} />
 <meta name="twitter:title" content={title} />
 <meta name="twitter:description" content={description} />
 <meta name="twitter:image" content={twitterImageURL} />

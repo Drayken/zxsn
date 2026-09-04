@@ -4,7 +4,7 @@ import Shell from "@/layouts/Shell.astro";
 import ArrowUpRight from "phosphor-astro/ArrowUpRight.astro";
 
 const latest = (await getCollection("echoes")).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())[0];
-const latestHref = latest ? `/echoes/${latest.id}/` : "/echoes/";
+const latestHref = latest ? `/echoes/${latest.id}` : "/echoes";
 ---
 
 <Shell>

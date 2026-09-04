@@ -85,7 +85,7 @@ const shareUrl = new URL(Astro.url.pathname, Astro.site).href;
             Copied
           </span>
         </button>
-        <span class="sr-only" aria-live="polite" data-share-copy-status></span>
+        <span class="sr-only" aria-live="polite" data-copy-status></span>
       </div>
     </article>
     <TableOfContents />
@@ -94,7 +94,8 @@ const shareUrl = new URL(Astro.url.pathname, Astro.site).href;
 
 <script>
   const buttons = document.querySelectorAll<HTMLButtonElement>("[data-share-copy]");
-  const status = document.querySelector<HTMLElement>("[data-share-copy-status]");
+  const headingAnchors = document.querySelectorAll<HTMLAnchorElement>("[data-heading-anchor]");
+  const status = document.querySelector<HTMLElement>("[data-copy-status]");
   const endHandlers = new WeakMap<HTMLButtonElement, (event: AnimationEvent) => void>();
 
   function clearCopiedState(button: HTMLButtonElement): void {
@@ -155,6 +156,33 @@ const shareUrl = new URL(Astro.url.pathname, Astro.site).href;
   buttons.forEach((button) => {
     button.addEventListener("click", () => {
       void copyShareUrl(button);
+    });
+  });
+
+  async function copyHeadingUrl(anchor: HTMLAnchorElement): Promise<void> {
+    if (!navigator.clipboard || !window.isSecureContext) {
+      if (status) status.textContent = "Couldn't copy link";
+      return;
+    }
+
+    const url = new URL(window.location.href);
+    // Preserve the canonical no-trailing-slash form even when this page was
+    // opened through an older slash-suffixed link.
+    url.pathname = url.pathname.replace(/\/$/, "") || "/";
+    url.hash = anchor.hash;
+
+    try {
+      await navigator.clipboard.writeText(url.href);
+      if (status) status.textContent = "Link copied";
+    } catch (err: unknown) {
+      console.warn("Copy to clipboard failed:", err);
+      if (status) status.textContent = "Couldn't copy link";
+    }
+  }
+
+  headingAnchors.forEach((anchor) => {
+    anchor.addEventListener("click", () => {
+      void copyHeadingUrl(anchor);
     });
   });
 </script>
