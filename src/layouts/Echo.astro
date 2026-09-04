@@ -28,7 +28,7 @@ const shareUrl = new URL(Astro.url.pathname, Astro.site).href;
       data-pagefind-body
       data-toc-content>
       <div
-        class="luminance-mask not-prose page-enter-hero mb-8 h-80 w-full bg-foreground"
+        class="luminance-mask not-prose page-enter-hero pointer-events-none mb-8 h-80 w-full bg-foreground"
         style={`--mask: url(${heroMask}); --mask-size: cover`}
         aria-hidden="true">
       </div>
