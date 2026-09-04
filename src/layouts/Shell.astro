@@ -3,6 +3,7 @@ import type { ImageMetadata } from "astro";
 import BaseHead from "@/components/BaseHead.astro";
 import Header from "@/components/Header.astro";
 import SearchDialog from "@/components/SearchDialog.astro";
+import ScrollToTop from "@/components/ScrollToTop.astro";
 import { SITE_DESCRIPTION, SITE_TITLE } from "@/lib/consts";
 
 interface Props {
@@ -27,5 +28,6 @@ const { title = SITE_TITLE, description = SITE_DESCRIPTION, image } = Astro.prop
     <Header />
     <slot />
     <SearchDialog />
+    <ScrollToTop />
   </body>
 </html>

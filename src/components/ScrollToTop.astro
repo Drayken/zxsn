@@ -1,0 +1,43 @@
+---
+import ArrowUp from "phosphor-astro/ArrowUp.astro";
+---
+
+<button
+  type="button"
+  class="corner-border pointer-events-none fixed right-4 bottom-4 z-50 grid size-11 translate-y-2 place-items-center border border-border bg-background text-foreground opacity-0 shadow-none transition-[color,background-color,border-color,opacity,transform] duration-200 ease-out-quint hover:border-accent hover:bg-accent hover:text-background focus-visible:border-accent focus-visible:bg-accent focus-visible:text-background focus-visible:outline-none sm:right-6 sm:bottom-6"
+  aria-label="Back to top"
+  inert
+  data-scroll-to-top>
+  <ArrowUp class="size-5" aria-hidden="true" />
+</button>
+
+<script>
+  const button = document.querySelector<HTMLButtonElement>("[data-scroll-to-top]");
+
+  if (button) {
+    initScrollToTop(button);
+  }
+
+  function initScrollToTop(trigger: HTMLButtonElement): void {
+    function updateVisibility(): void {
+      const isVisible = window.scrollY > window.innerHeight;
+
+      if (!isVisible && document.activeElement === trigger) {
+        trigger.blur();
+      }
+
+      trigger.classList.toggle("pointer-events-none", !isVisible);
+      trigger.classList.toggle("translate-y-2", !isVisible);
+      trigger.classList.toggle("opacity-0", !isVisible);
+      trigger.inert = !isVisible;
+    }
+
+    trigger.addEventListener("click", () => {
+      const behavior = window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth";
+      window.scrollTo({ top: 0, behavior });
+    });
+
+    window.addEventListener("scroll", updateVisibility, { passive: true });
+    updateVisibility();
+  }
+</script>
