@@ -142,6 +142,61 @@
   --tw-prose-td-borders: var(--color-border);
 }
 
+/* Editorial pull quotes for standard Markdown blockquotes. */
+.prose-zxsn blockquote {
+  @apply font-heading text-foreground;
+  position: relative;
+  overflow: hidden;
+  padding: 0.8em 1em;
+  border: 1px solid var(--border);
+}
+
+.prose-zxsn blockquote::before {
+  @apply leading-none text-accent;
+  content: "“";
+  pointer-events: none;
+  position: relative;
+  z-index: 1;
+  font-size: clamp(4rem, 10vw, 6rem);
+}
+
+.prose-zxsn blockquote::after {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-color: var(--foreground);
+  -webkit-mask-image: url("/blockquote.webp");
+  mask-image: url("/blockquote.webp");
+  -webkit-mask-source-type: luminance;
+  mask-mode: luminance;
+  -webkit-mask-size: auto 100%;
+  mask-size: auto 100%;
+  -webkit-mask-position: right center;
+  mask-position: right center;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  opacity: 0.05;
+}
+
+/* Match @tailwindcss/typography h2 type (base + lg), not the quote mark. */
+.prose-zxsn blockquote > * {
+  position: relative;
+  z-index: 1;
+  font-size: 1.5em;
+  font-weight: 400;
+  line-height: 1.3333333;
+  letter-spacing: normal;
+}
+
+@variant lg {
+  .prose-zxsn blockquote > * {
+    font-size: 1.6666667em;
+    line-height: 1.3333333;
+  }
+}
+
 @layer utilities {
   .ui-text {
     @apply font-ui tracking-widest uppercase;

@@ -59,8 +59,9 @@ This leads to having to fall back to an inefficient & lackluster health polling 
 
 The Forge/DevRel team has proven to be consistently unprofessional, incompetent, and disrespectful. They would often ignore feedback, reported bugs, and requests for features. Broken promises, blaming the community for their own mistakes, excuses for their own failures, are a hallmark of virtually everything 343, which unfortunately includes even their developer relations team which are the furthest imaginable away from "corpo suits" that people usually blame.
 
-> _**Edit as of November 15, 2025:**  
-> You can get an insight into their incompetence and lack of decorum in the later part of [this article recently written by Okom](https://okom.one/blog/hero-in-117-minutes-the-largest-xp-exploit-in-halo-infinite#the-aftermath). Where failing to properly curate experiences which they add to official matchmaking gets blamed on everyone but themselves, and map creators permanently suspended from the game._
+> Nov 15, 2025:
+>
+> _Insight into 343 incompetence & lack of decorum in later part of [this article recently written by Okom](https://okom.one/blog/hero-in-117-minutes-the-largest-xp-exploit-in-halo-infinite#the-aftermath)._
 
 ---
 
