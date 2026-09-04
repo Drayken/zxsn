@@ -1,6 +1,10 @@
 allowBuilds:
-  '@parcel/watcher': true
+  "@parcel/watcher": true
   esbuild: true
   sharp: true
   unrs-resolver: true
   workerd: true
+minimumReleaseAgeExclude:
+  - astro@7.3.1
+  - miniflare@5.20260903.0-alpha
+  - wrangler@4.129.0

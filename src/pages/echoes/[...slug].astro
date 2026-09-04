@@ -7,6 +7,7 @@ export async function getStaticPaths() {
   return echoes.map((echo) => ({
     params: { slug: echo.id },
     props: echo,
+    cacheKey: String(echo.digest),
   }));
 }
 type Props = CollectionEntry<"echoes">;
