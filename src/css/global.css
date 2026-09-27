@@ -142,6 +142,13 @@
   --tw-prose-td-borders: var(--color-border);
 }
 
+.prose-zxsn mark {
+  background-color: var(--accent);
+  color: var(--background);
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
 /* Editorial pull quotes for standard Markdown blockquotes. */
 .prose-zxsn blockquote {
   @apply font-heading text-foreground;
